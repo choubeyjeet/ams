@@ -1,0 +1,98 @@
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    @layer utilities {
+      /* Chrome, Safari, and Opera */
+      .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Firefox */
+      .scrollbar-hidden {
+        scrollbar-width: none;
+      }
+
+      /* IE and Edge */
+      .scrollbar-hidden {
+        -ms-overflow-style: none;
+      }
+    }
+
+
+.ReactTags__selected {
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap !important;
+  border: 1px solid #193258 !important;
+  color: #fff !important;
+  min-height: 40px !important;
+  align-items: center !important;
+  font-size: 14px !important;
+  gap: 10px;
+  color: black;
+}
+
+.ReactTags__tagInput .ReactTags__tagInputField {
+  /* background-color: transparent !important; */
+  color: black;
+  
+  height: 36px;
+  width: 100%;
+  max-width: 100px;
+}
+
+.react-tags-active .ReactTags__tagInput input:focus {
+  outline: none !important;
+ 
+  box-shadow: none !important;
+}
+
+
+.ReactTags__selected .ReactTags__tagInput .ReactTags__tagInputField:focus {
+  outline: none !important;
+
+  box-shadow: none !important;
+}
+
+.ReactTags__remove {
+background-color: black;
+margin-left: 5px;  
+
+ 
+}
+
+.ReactTags__tag {
+  color: black;
+  padding: 5px !important;
+  border: 1px solid #193258;
+  border-radius: 4px;
+  cursor: default !important;
+}
+
+.ReactTags__suggestions li {
+  border: 1px solid #193258;
+  margin-top: 2px;
+  cursor: pointer;
+  height: 40px;
+  border-radius: 4px;
+  padding: 10px;
+}
+.dark .ReactTags__suggestions li{
+  border: 1px solid #BEC8D5;
+  color: black;
+}
+
+.ReactTags__suggestions {
+  z-index: 9999;
+  position: absolute;
+  background-color: #14243e !important;
+  width: 100%;
+  max-width: 250px;
+  height: auto !important;
+  max-height: 40vh !important;
+  overflow-y: auto;
+}
+.dark .ReactTags__suggestions{
+  background-color: #F0F2F5 !important;
+}
