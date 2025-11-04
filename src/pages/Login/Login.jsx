@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash, FaGoogle, FaApple, FaLinkedin } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import api from "../../api/axiosPrivate";
+import { ToastContainer, toast } from 'react-toastify';
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -18,24 +19,59 @@ export default function Login() {
 
     if (!formData.password.trim()) {
       newErrors.password = "Password is required.";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters.";
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+try{
+   
     if (validate()) {
-      alert("✅ Login successful (mock)!");
-      setFormData({ email: "", password: "" });
+    
+const response = await api.post(
+        "ams.api.login",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "token 5ab3ef379bdd579:0673d2b6240a69f",
+          },
+        }
+      );
+ 
+const {status, message, data} = response?.data?.message;
+if(status===401 || status===404){
+   toast.error(message)
+}
+
+if(status===200) {
+  localStorage.setItem("authToken", data?.token);
+  navigate('/feed')
+  toast.success("Logged in successfully.")
+}
+      
+
+
     }
+}
+catch(error){
+  console.log(error)
+}
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      navigate("/feed"); // redirect if already logged in
+    }
+  }, [navigate]);
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
+      <ToastContainer />
       {/* Left Side - Form */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-gradient-to-br from-indigo-900 via-purple-800 to-blue-900 text-white p-8">
         <div className="w-full max-w-md bg-white/10 p-8 rounded-2xl shadow-lg backdrop-blur-sm">
