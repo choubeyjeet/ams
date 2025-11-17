@@ -1,9 +1,9 @@
 // src/api/axiosInstance.js
 import axios from "axios";
 
-const BASE_URL = "https://65.2.74.157/api/method";
+const BASE_URL = "https://65.2.74.157/api/";
 
- 
+
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -104,7 +104,7 @@ api.interceptors.response.use(
       } catch (refreshError) {
         processQueue(refreshError, null);
         clearTokens();
-        window.location.href = "/login";
+        // window.location.href = "/login";
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;

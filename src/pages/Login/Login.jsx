@@ -32,12 +32,12 @@ try{
     if (validate()) {
     
 const response = await api.post(
-        "ams.api.login",
+        "/method/ams.api.login",
         formData,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "token 5ab3ef379bdd579:0673d2b6240a69f",
+            Authorization: "Basic NWFiM2VmMzc5YmRkNTc5OjAxYjFmN2FhOWNhMGFiNg==",
           },
         }
       );
@@ -138,14 +138,14 @@ catch(error){
             </button>
 
             {/* OR Divider */}
-            <div className="flex items-center justify-center my-4">
+            {/* <div className="flex items-center justify-center my-4">
               <div className="h-px bg-gray-500 w-1/4" />
               <span className="mx-2 text-gray-400 text-sm">or login with</span>
               <div className="h-px bg-gray-500 w-1/4" />
-            </div>
+            </div> */}
 
             {/* Social Buttons */}
-            <div className="flex justify-center gap-4">
+            {/* <div className="flex justify-center gap-4">
               <button
                 type="button"
                 className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-md transition"
@@ -164,7 +164,7 @@ catch(error){
               >
                 <FaLinkedin className="text-blue-400" /> LinkedIn
               </button>
-            </div>
+            </div> */}
           </form>
          <div className="text-[14px] mt-4 p-2"> Don't have an account? <span onClick={()=>{navigate('/signup')}} className="cursor-pointer">Sign Up</span></div>
         </div>
